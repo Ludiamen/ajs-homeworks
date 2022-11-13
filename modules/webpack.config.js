@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { loader } = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'production',
@@ -36,11 +37,17 @@ module.exports = {
           },
         ],
       },
+      // {
+      //   test: '/\.css$/',
+      //   use: [
+      //     MiniCssExtractPlugin.loader, 
+      //     'css-loader',
+      //   ],
+      // },
       {
-        test: '/\.css$/',
+        test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader, 
-          'css-loader',
+          MiniCssExtractPlugin.loader, 'css-loader',
         ],
       },
     ],
@@ -57,6 +64,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin({
       template: './src/index.html',
       filename: 'index.html'
-    })
+    }),
   ],
 };  
