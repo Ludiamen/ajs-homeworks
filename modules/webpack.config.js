@@ -19,25 +19,6 @@ module.exports = {
     compress: true,
       },
 
-//   module: {
-//     rules: [
-//       {
-//         test: /\.css$/,
-//         use: [
-//           MiniCSSExtractPlugin.loader,
-//           'css-loader'
-//         ] 
-//       },
-//       {
-//         test: /\.html$/,
-//         use: [
-//           {
-//             loader: 'html-loader'
-//           },
-//         ],
-//       }
-//     ]
-//   },
   module: {
     rules: [
       {
@@ -73,6 +54,9 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin({
+      template: './src/index.html',
+      filename: 'index.html'
+    })
   ],
 };  
